@@ -4,6 +4,7 @@ pandas
 openpyxl
 geopy
 streamlit-folium
+sklearn
 
 # Visualizaciones
 matplotlib
