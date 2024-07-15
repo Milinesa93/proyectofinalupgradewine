@@ -8,7 +8,6 @@ sklearn
 KNN
 spicy
 pyod.models.knn
-numba>=0.51
 joblib
 pycaret
 

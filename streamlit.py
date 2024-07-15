@@ -5,7 +5,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import statistics as stats
 import sklearn as sk
-import api
 import requests as req
 
+import urllib.request
+import json
+import os
+import ssl
 
+st.set_pageconfig
