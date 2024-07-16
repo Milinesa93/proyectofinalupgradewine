@@ -11,16 +11,19 @@ init_notebook_mode(connected=True)
 import streamlit.components.v1 as components
 from utils import *
 
+
+#salto de linea HTML <br>
+
 # ---------------------SITE CONFIG----------------------#
 st.set_page_config(
-    page_title="Airbnb: Barcelona",
-    page_icon="",#intentar icono#
+    page_title="Selección de vinos",
+    page_icon=":wine_glass:",#intentar icono#
     layout="wide")
 
 with st.sidebar:
     selected = option_menu(
         menu_title = "Menu Principal",
-        options = ["Home","Descripcion de la ciudad","Panel informativo","Evolución de precios"],
+        options = ["Home","Descripción de la base de datos","Panel informativo","Evolución de precios"],
         icons = ["house","book","bar-chart",'coin'],
         menu_icon = "cast",
         default_index = 0,)
@@ -28,34 +31,40 @@ with st.sidebar:
 # creando el contenido de las páginas de acuerdo a la opción seleccionada
 
 #####################################################################################################
+
+# PAGE 1----------------------------------
 if selected == "Home":
  
     st.markdown("""
 <div class="container">
-    <h1 class='centered-title-pg1'>Estudio del crecimiento de precios de AirBnB en Barcelona</h1>
-    <p class='centered-text-pg1'>Se ha realizado un estudio de datos desde 10 de junio de 2023 hasta el 08 de junio de 2024. 
-    El objetivo final de este estudio será ver cómo han evolucionado los precios en los distintos barrios de Barcelona a lo largo del tiempo.</p>
+    <h1 class='centered-title-pg1' style='color: white ;'>Los mejores vinos de España</h1>
+    <p class='centered-text-pg1' >Se ha realizado una valoración de los vinos de España en relación a su cuerpo, acidez y precio<br>
+    El objetivo final de este estudio, es recomendar a nuestro importador de vinos, mediante el uso de algoritmos de clasificación cuál es el vinos que más le interesa adquirir.</p>
 </div>
 """, unsafe_allow_html=True)
     #st.image(r'd:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\wordcloud_reviews.png', use_column_width=True)
 
-    st.image('https://i.imgur.com/38kuu36.jpeg', use_column_width=True) 
+#gif vino
+    st.image('https://i.makeagif.com/media/8-14-2020/3DKUjE.gif', use_column_width=False, width=1400)
     
-    st.markdown("<p class='images-text'>imagenes: https://imgur.com/gallery/barcelona-during-night-EQnq7Xr</p>", unsafe_allow_html=True)
+    st.markdown("<p class='images-text'>imagenes: https://i.makeagif.com/media/8-14-2020/3DKUjE.gif</p>", unsafe_allow_html=True)
 
+## END PAGE 1
 
 #####################################################################################################
-if selected == "Descripcion de la ciudad":
+if selected == "Descripción de la base de datos":
 
+#analisis descriptivo del dataset
     st.markdown("""
 <div class="container">
-    <h1 class='centered-title-pg1'>Descripcion de la ciudad</h1>
-    <p class='centered-text-pg1'>Barcelona recibe muchos turistas a lo largo del año, de los 18 millones que visitaron Cataluña, 7,2 millones fueron a Barcelona, aproximadamente el 40% de los turistas que van a la comunidad visitan esta ciudad (Datos extraídos del INE).<p>
+    <h1 class='centered-title-pg1'>Descripción de la base de datos</h1>
+    <p class='centered-text-pg1'>Hemos obtenido esta base de datos de la página <a href="https://www.kaggle.com/datasets/fedesoriano/spanish-wine-quality-dataset">kaggle</a>, consta de 7.500 valores donde podemos ver en que bodega se hicieron, el año, el cuerpo del vino, su nivel de acidez, su valoración, de qué tipo de vino se trata, el nombre y el número de reviews. <br>
+    <p>
     <p class='centered-text-pg1'>Distribución de Air BnB anunciados por barrio</p>
 </div>
 """, unsafe_allow_html=True)
-    #st.write('Con estos datos procederemos a una revision del numero de anuncios y las ubicaciones mediante un mapa.')
-    #html_file_path = r"d:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\map1.html"
+
+# fuente cita: fedesoriano. (April 2022). Spanish Wine Quality Dataset. Retrieved [Date Retrieved] from https://www.kaggle.com/datasets/fedesoriano/spanish-wine-quality-dataset
 
 # Read the HTML content
     with open(html_file_path, "r", encoding='utf-8') as file:
@@ -87,7 +96,7 @@ if selected == "Evolución de precios":
 
     st.markdown(' Tras el estudio de los precios del panel anterior, se decidió que lo mejor sería un estudio de la evolución del precio a lo largo del tiempo , para ello se realizaron tre graficos viendo la evolucion del precio, y para evitar sesgos se les aplico una funcion:')
     #st.image(r'd:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\serie_temporal_precio_con_suavizante.png', use_column_width=True)
-    st.markdown("<p class='sub-figure'> ###En este gráfico vemos la evolución del precio medio, se observa una caida a lo largo de los últimos meses del año y de los primeros, aproximadente la caida empieza en octubre. </p>", unsafe_allow_html=True)
+    st.markdown("<p class='sub-figure'> En este gráfico vemos la evolución del precio medio, se observa una caida a lo largo de los últimos meses del año y de los primeros, aproximadente la caida empieza en octubre. </p>", unsafe_allow_html=True)
 
 
     #st.image(r'd:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\Precio_NMt_y_Suavizante.png', use_column_width=True)
@@ -162,6 +171,8 @@ if selected == "Panel informativo":
     </div>    
     """, unsafe_allow_html=True)
 
+#### POWER BI SECTION
+
     powerbi_url = "https://app.powerbi.com/view?r=eyJrIjoiMDQyYTFmMGMtM2IyYi00MWRhLWIyZDgtNzhhYzkwODdkMjdmIiwidCI6IjhhZWJkZGI2LTM0MTgtNDNhMS1hMjU1LWI5NjQxODZlY2M2NCIsImMiOjl9"
     st.markdown(f"""
             <iframe width="100%" height="600" src="{powerbi_url}" frameborder="0" allowFullScreen="true"></iframe>
@@ -172,17 +183,19 @@ if selected == "Panel informativo":
 css = """
 <style>
     [data-testid="stSidebar"] {
-        background-image: url(https://i.imgur.com/7vTxGvN.jpeg);
+        background-image: url(https://estaticos-cdn.prensaiberica.es/clip/6b3786a9-f191-4d49-ad0f-0f2d863119eb_alta-aspect-ratio_default_0.webp);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
     }
-    .header-black {
-        color: black;
-    }
-        .centered-text {
+    .header-white {
+        color: white;
+    } 
+    <!-- no sabemos que hace -->
+    
+        .centered-text {     
         text-align: center;
-        color: black;
+        color: white;
         font-size: 40px;
         margin-bottom: 40px; 
     }
@@ -197,7 +210,7 @@ css = """
     }
     .subtitles {
         font-size: 25px;
-        color: black;  
+        color: white;  
         margin-top: 10px;
     }
         .centered-title-pg1 {
@@ -205,7 +218,7 @@ css = """
         font-size: 2em;
         font-weight: bold;
         margin-bottom: 20px;
-        color: black;
+        color: white;
         width: 90%; 
     }
     .justified-text-pg1 {
@@ -213,7 +226,7 @@ css = """
         font-size: 1.2em;
         line-height: 1.5;
         margin-bottom: 15px;
-        color: black; 
+        color: white; 
         width: 90%; 
         margin-left: auto;
         margin-right: auto;
@@ -224,7 +237,7 @@ css = """
         line-height: 1.5;
         margin-bottom: 15px;
         font-family: 'Lato', sans-serif;
-        color: black; 
+        color: white; 
         width: 90%; 
         margin-left: auto;
         margin-right: auto;
@@ -235,7 +248,7 @@ css = """
         line-height: 1.5;
         font-family: sans-serif;
         margin-bottom: 5px;
-        color: black; 
+        color: white; 
         width: 90%; 
         margin-left: auto;
         margin-right: auto;
@@ -246,13 +259,13 @@ css = """
     }
     .sub-figure {
         text-align: left;
-        color: black;
+        color: white;
         font-size: 13px;
         margin-bottom: 45px; 
     }
     .sub-figure2 {
         text-align: left;
-        color: black;
+        color: white;
         font-size: 13px;
         margin-bottom: 10px; 
     }

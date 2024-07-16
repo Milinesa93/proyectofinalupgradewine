@@ -16,8 +16,27 @@ allowSelfSignedHttps(True) # this line is needed if you use self-signed certific
 # More information can be found here:
 # https://docs.microsoft.com/azure/machine-learning/how-to-deploy-advanced-entry-script
 
-data = {'input1': {'columnAttributes': [{'name': 'winery', 'type': 'String', 'isFeature': True, 'elementType': {'typeName': 'str', 'isNullable': False}}, 
-                                        {'name': 'wine', 'type': 'String', 'isFeature': True, 'elementType': {'typeName': 'str', 'isNullable': False}\nData: b'{}'\nTraceback (most recent call last):\n  File \"/azureml-envs/azureml_1cb18400c65045b04f876961ed2a6d0a/lib/python3.8/site-packages/azureml/designer/serving/dagengine/processor.py\", line 18, in run\n    webservice_input, global_parameters = self.pre_process(raw_data)\n  File \"/azureml-envs/azureml_1cb18400c65045b04f876961ed2a6d0a/lib/python3.8/site-packages/azureml/designer/serving/dagengine/processor.py\", line 46, in pre_process\n    all_inputs = json_data['Inputs']\nKeyError: 'Inputs'\n", "details": ""}}
+data = {
+        "input_data": {
+            "columns": [
+                "winery",
+                "wine",
+                "year",
+                "rating",
+                "num_reviews",
+                "country",
+                "region",
+                "price",
+                "type",
+                "body",
+                "acidity"
+                
+            ],
+            "index": [0],
+            "data": [[winery,wine,year,rating,num_reviews,country,region,price,type,body,acidity]] # type: ignore
+        }
+    }
+ 
 
 body = str.encode(json.dumps(data))
 
