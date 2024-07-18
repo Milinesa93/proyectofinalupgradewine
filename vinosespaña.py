@@ -283,12 +283,14 @@ if selected == "Panel informativo de los vinos":
 # Adicionar CSS al app Streamlit
 css = """
 <style>
+    body {
+        background-color: black;
+    }
     [data-testid="stSidebar"] {
         background-image: url(https://estaticos-cdn.prensaiberica.es/clip/6b3786a9-f191-4d49-ad0f-0f2d863119eb_alta-aspect-ratio_default_0.webp);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        background-color: #000000;
     }
     .header-white {
         color: white;
@@ -370,6 +372,7 @@ css = """
         color: white;
         font-size: 13px;
         margin-bottom: 10px; 
+        
     }
     
 </style>
