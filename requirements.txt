@@ -4,12 +4,11 @@ pandas
 openpyxl
 geopy
 streamlit-folium
-sklearn
+scikit-learn
 KNN
-spicy
-pyod.models.knn
 joblib
 pycaret
+pandas_label_encoder
 
 # Visualizaciones
 matplotlib
@@ -17,7 +16,6 @@ seaborn
 plotly-express
 
 # Modelado y computación
-scikit-learn
 ortools
 folium
 
