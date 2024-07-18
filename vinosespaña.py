@@ -23,10 +23,6 @@ import seaborn as sns
 
 df = pd.read_csv("dfclean.csv")
 
-#salto de linea HTML <br>
-
-#
-# Adicionar CSS al app Streamlit
 css = """
 <style>
     [data-testid="stSidebar"] {
@@ -36,7 +32,7 @@ css = """
         background-position: center;
     }
     .block-container {
-        background-color: #4a148c !important; 
+        background-color: #380487 !important; 
     }
     
         .centered-text {     
@@ -99,6 +95,7 @@ css = """
         margin-left: auto;
         margin-right: auto;
     }
+
     .container {
         width: 100%;
         margin: 0 auto;
@@ -129,8 +126,6 @@ st.markdown(css, unsafe_allow_html=True)
 # ---------------------SITE CONFIG----------------------#
 
 
-
-
 with st.sidebar:
     selected = option_menu(
         menu_title = "Menu Principal",
@@ -138,7 +133,6 @@ with st.sidebar:
         icons = ["house","book","bar-chart",'calculator'],
         menu_icon = "cast",
         default_index = 0,)
-
 
 #####################################################################################################
 
@@ -165,7 +159,7 @@ if selected == "España: El país con más viñedos del mundo":
         img4 = Image.open("Imagenes/imagen4.jpeg")
         img5 = Image.open("Imagenes/imagen5.jpeg")
         img6 = Image.open("Imagenes/imagen6.jpeg")
-        img7 = Image.open("Imagenes/imagen7.jpeg")
+        img7 = Image.open("Imagenes/imagen 7.jpeg")
         img8 = Image.open("Imagenes/imagen8.jpeg")
 
         # division de columnas y los textos de cada imagen
@@ -239,7 +233,7 @@ if selected == "Objetivo del estudio y información del dataset":
 </div>
 """, unsafe_allow_html=True)
 
-#Imagen valores nulos
+#Imagen valores nulos y otros graficos
     st.title("Valores nulos")
     st.image("valores_nulos.png", use_column_width=False, width=1100)
     st.subheader("En la imagen anterior se puede observar que hay valores nulos en el dataset, vemos como se concentran en las columnas acidity y body, y tambien existen algunos dentro de la columna type, como consideramos que no se pueden sustituir los valores sin tener mas información, eliminamos los valores nulos. Posteriormente hicimos un análisis descriptivo con el objetivo de visualizar bien nuestra base de datos.")
@@ -250,11 +244,6 @@ if selected == "Objetivo del estudio y información del dataset":
 
 ###  END PAGE 2
     
-    
-
-
-# fuente cita: fedesoriano. (April 2022). Spanish Wine Quality Dataset. Retrieved [Date Retrieved] from https://www.kaggle.com/datasets/fedesoriano/spanish-wine-quality-dataset
-## END PAGE 2
 
 #####################################################################################################
 # PAGE 3----------------------------------
@@ -269,7 +258,6 @@ if selected == "Modelo":
     <h1 class='centered-text-pg1'>Hemos creado un modelo para que cada cliente pueda buscar una bodega, en función del vino que le apetezca probar, es decir cada cliente añadiendo en el modelo que se muestra a continuación, los datos del vino que quiere probar, puede encontrar la bodega en la que adquirirlo. Además, seguido del modelo puede buscar la bodega recomendada para ver todos los datos que tenemos sobre ella.</h1></div>    
 """, unsafe_allow_html=True)
     
-    # Convertir variables categóricas a numéricas
     #grafico peso modelo
     st.image("pesodelmodelo.png", use_column_width=False, width=1100)
     
@@ -286,16 +274,15 @@ if selected == "Modelo":
     # Dividir datos en conjuntos de entrenamiento y prueba
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Crear y entrenar el modelo de Random Forest
+    # modelo de Random Forest
     rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
     rf_model.fit(X_train, y_train)
 
     # Evaluar el modelo
     y_pred = rf_model.predict(X_test)
-    # st.write("Accuracy:", accuracy_score(y_test, y_pred))
-    # st.write("Classification Report:\n", classification_report(y_test, y_pred))
+   
 
-    # Función para ingresar datos manualmente y realizar predicción
+    # funcion para ingresar datos manualmente y realizar predicción
     def predict_winery(wine, year, rating, num_reviews, country, region, price, wine_type, body, acidity):
         # Convertir las características ingresadas a números usando los label encoders
         wine = label_encoders['wine'].transform([wine])[0]
@@ -317,11 +304,11 @@ if selected == "Modelo":
             'acidity': [acidity]
         })
 
-        # Realizar la predicción
+        # resultado predicción
         prediction = rf_model.predict(new_data)
         return prediction[0]
 
-    # Interfaz de Streamlit para ingresar valores manualmente
+    # aca se le pide al usuario que ingrese valores para predecir la bodega
     st.write("Por favor ingrese los valores del vino para predecir la bodega:")
 
     wine = st.text_input("Nombre del Vino (e.g., Tinto)")
@@ -335,7 +322,7 @@ if selected == "Modelo":
     body = st.number_input("Cuerpo del Vino (e.g., 5.0)")
     acidity = st.number_input("Acidez del Vino (e.g., 3.0)")
 
-# Realizar la predicción
+# Realizar la predicción para el usuario
     if st.button("Predecir Bodega"):
         prediction = predict_winery(wine, year, rating, num_reviews, country, region, price, wine_type, body, acidity)
 
