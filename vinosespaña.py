@@ -8,7 +8,6 @@ import cufflinks
 cufflinks.go_offline(connected=True)
 init_notebook_mode(connected=True)
 import streamlit.components.v1 as components
-from utils import *
 import requests
 import json
 import streamlit.components.v1 as components
