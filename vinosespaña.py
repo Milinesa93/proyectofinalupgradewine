@@ -166,8 +166,7 @@ if selected == "Modelo":
     st.markdown("""
 <div class="container">
     <h1 class='centered-title-pg1'>Modelo random forest de clasificación.</h1>
-    <h1 class='centered-text-pg1'>Hemos creado un modelo para que cada cliente pueda buscar una bodega, en función del vino que le apetezca probar, es decir cada cliente añadiendo en el modelo que se muestra a continuación, los datos del vino que quiere probar, puede encontrar la bodega en la que adquiri</h1>
-. Además, seguido del modelo puede buscar la bodega recomendada para ver todos los datos que tenemos sobre ella.</div>    
+    <h1 class='centered-text-pg1'>Hemos creado un modelo para que cada cliente pueda buscar una bodega, en función del vino que le apetezca probar, es decir cada cliente añadiendo en el modelo que se muestra a continuación, los datos del vino que quiere probar, puede encontrar la bodega en la que adquirirlo. Además, seguido del modelo puede buscar la bodega recomendada para ver todos los datos que tenemos sobre ella.</h1></div>    
 """, unsafe_allow_html=True)
     
     # Convertir variables categóricas a numéricas
@@ -282,97 +281,98 @@ if selected == "Panel informativo de los vinos":
 
 #
 # Adicionar CSS al app Streamlit
-# css = """
-# <style>
-#     [data-testid="stSidebar"] {
-#         background-image: url(https://estaticos-cdn.prensaiberica.es/clip/6b3786a9-f191-4d49-ad0f-0f2d863119eb_alta-aspect-ratio_default_0.webp);
-#         background-size: cover;
-#         background-repeat: no-repeat;
-#         background-position: center;
-#     }
-#     .header-white {
-#         color: white;
-#     } 
-#     <!-- no sabemos que hace -->
+css = """
+<style>
+    [data-testid="stSidebar"] {
+        background-image: url(https://estaticos-cdn.prensaiberica.es/clip/6b3786a9-f191-4d49-ad0f-0f2d863119eb_alta-aspect-ratio_default_0.webp);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #000000;
+    }
+    .header-white {
+        color: white;
+    } 
+    <!-- no sabemos que hace -->
     
-#         .centered-text {     
-#         text-align: center;
-#         color: white;
-#         font-size: 40px;
-#         margin-bottom: 40px; 
-#     }
-#     .justified-text {
-#         text-align: justify;
-#         margin-bottom: 40px;
-#     }
-#     .images-text {
-#         font-size: px;
-#         color: white;  
-#         margin-top: 00px;
-#     }
-#     .subtitles {
-#         font-size: 25px;
-#         color: white;  
-#         margin-top: 10px;
-#     }
-#         .centered-title-pg1 {
-#         text-align: center;
-#         font-size: 2em;
-#         font-weight: bold;
-#         margin-bottom: 20px;
-#         color: white;
-#         width: 90%; 
-#     }
-#     .justified-text-pg1 {
-#         text-align: justify;
-#         font-size: 1.2em;
-#         line-height: 1.5;
-#         margin-bottom: 15px;
-#         color: white; 
-#         width: 90%; 
-#         margin-left: auto;
-#         margin-right: auto;
-#     }
-#     .centered-text-pg1 {
-#         text-align: center;
-#         font-size: 1.2em;
-#         line-height: 1.5;
-#         margin-bottom: 15px;
-#         font-family: 'Lato', sans-serif;
-#         color: white; 
-#         width: 90%; 
-#         margin-left: auto;
-#         margin-right: auto;
-#     }
-#     .centered-text-pg5 {
-#         text-align: center;
-#         font-size: 1.2em;
-#         line-height: 1.5;
-#         font-family: sans-serif;
-#         margin-bottom: 5px;
-#         color: white; 
-#         width: 90%; 
-#         margin-left: auto;
-#         margin-right: auto;
-#     }
-#     .container {
-#         width: 100%;
-#         margin: 0 auto;
-#     }
-#     .sub-figure {
-#         text-align: left;
-#         color: white;
-#         font-size: 13px;
-#         margin-bottom: 45px; 
-#     }
-#     .sub-figure2 {
-#         text-align: left;
-#         color: white;
-#         font-size: 13px;
-#         margin-bottom: 10px; 
-#     }
+        .centered-text {     
+        text-align: center;
+        color: white;
+        font-size: 40px;
+        margin-bottom: 40px; 
+    }
+    .justified-text {
+        text-align: justify;
+        margin-bottom: 40px;
+    }
+    .images-text {
+        font-size: px;
+        color: white;  
+        margin-top: 00px;
+    }
+    .subtitles {
+        font-size: 25px;
+        color: white;  
+        margin-top: 10px;
+    }
+        .centered-title-pg1 {
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: white;
+        width: 90%; 
+    }
+    .justified-text-pg1 {
+        text-align: justify;
+        font-size: 1.2em;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        color: white; 
+        width: 90%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .centered-text-pg1 {
+        text-align: center;
+        font-size: 1.2em;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        font-family: 'Lato', sans-serif;
+        color: white; 
+        width: 90%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .centered-text-pg5 {
+        text-align: center;
+        font-size: 1.2em;
+        line-height: 1.5;
+        font-family: sans-serif;
+        margin-bottom: 5px;
+        color: white; 
+        width: 90%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .sub-figure {
+        text-align: left;
+        color: white;
+        font-size: 13px;
+        margin-bottom: 45px; 
+    }
+    .sub-figure2 {
+        text-align: left;
+        color: white;
+        font-size: 13px;
+        margin-bottom: 10px; 
+    }
     
-# </style>
-# """
-# st.markdown(css, unsafe_allow_html=True)
+</style>
+"""
+st.markdown(css, unsafe_allow_html=True)
 
