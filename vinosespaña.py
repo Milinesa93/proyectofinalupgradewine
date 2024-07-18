@@ -34,8 +34,8 @@ st.set_page_config(
 with st.sidebar:
     selected = option_menu(
         menu_title = "Menu Principal",
-        options = ["España: El país con más viñedos del mundo","Objetivo del estudio y información del dataset","Panel informativo de los vinos","Modelo","Recomendacioness"],
-        icons = ["house","book","bar-chart",'calculator','lightbulb'],
+        options = ["España: El país con más viñedos del mundo","Objetivo del estudio y información del dataset","Panel informativo de los vinos","Modelo"],
+        icons = ["house","book","bar-chart",'calculator'],
         menu_icon = "cast",
         default_index = 0,)
 
@@ -295,11 +295,10 @@ css = """
     .header-white {
         color: white;
     } 
-    <!-- no sabemos que hace -->
     
         .centered-text {     
         text-align: center;
-        color: white;
+        color: black;
         font-size: 40px;
         margin-bottom: 40px; 
     }
