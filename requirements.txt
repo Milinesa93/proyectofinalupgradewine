@@ -9,6 +9,7 @@ KNN
 joblib
 pycaret
 pandas_label_encoder
+streamlit_option_menu
 
 # Visualizaciones
 matplotlib
