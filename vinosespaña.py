@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
 from streamlit_option_menu import option_menu
 import joblib
 from plotly.offline import iplot, init_notebook_mode
@@ -10,7 +9,20 @@ cufflinks.go_offline(connected=True)
 init_notebook_mode(connected=True)
 import streamlit.components.v1 as components
 from utils import *
+import requests
+import json
+import streamlit.components.v1 as components
+import statistics as stats
+import sklearn as sk
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, accuracy_score
+from PIL import Image
+import matplotlib.pyplot as plt
+import seaborn as sns
 
+df = pd.read_csv("dfclean.csv")
 
 #salto de linea HTML <br>
 
@@ -23,150 +35,240 @@ st.set_page_config(
 with st.sidebar:
     selected = option_menu(
         menu_title = "Menu Principal",
-        options = ["Home","Descripción de la base de datos","Panel informativo","Evolución de precios"],
-        icons = ["house","book","bar-chart",'coin'],
+        options = ["España: El país con más viñedos del mundo","Objetivo del estudio y información del dataset","Panel informativo de los vinos","Modelo","Recomendacioness"],
+        icons = ["house","book","bar-chart",'calculator','lightbulb'],
         menu_icon = "cast",
         default_index = 0,)
 
-# creando el contenido de las páginas de acuerdo a la opción seleccionada
 
 #####################################################################################################
 
 # PAGE 1----------------------------------
-if selected == "Home":
+
+if selected == "España: El país con más viñedos del mundo":
+    # VENTA DE ESPAÑA COMO EXPORTADOR DE VINO
+    
+        st.markdown("""
+    <div class="container">
+        <h1 class='centered-title-pg1' style='color: white ; font-size: 75px;'>España: El país con más viñedos del mundo</h1>
+    </div>
+    """, unsafe_allow_html=True)
+        st.video("https://www.youtube.com/watch?v=ZZWjRyqeqUQ")
+        st.markdown("<p class='images-text'>Fuente: https://www.youtube.com/watch?v=ZZWjRyqeqUQ</p>", unsafe_allow_html=True)
+
+        st.title("Cifras del Sector del Vino en España")
+        st.write("\n")
+
+        # Cargar imágenes
+        img1 = Image.open("Imagenes/imagen1.jpeg")
+        img2 = Image.open("Imagenes/imagen2.jpeg")
+        img3 = Image.open("Imagenes/imagen3.jpeg")
+        img4 = Image.open("Imagenes/imagen4.jpeg")
+        img5 = Image.open("Imagenes/imagen5.jpeg")
+        img6 = Image.open("Imagenes/imagen6.jpeg")
+        img7 = Image.open("Imagenes/imagen7.jpeg")
+        img8 = Image.open("Imagenes/imagen8.jpeg")
+
+        # division de columnas y los textos de cada imagen
+        col1, col2, col3, col4 = st.columns(4)
+
+        with col1:
+            st.markdown("<p style='text-align: center;'><strong>Somos el primer viñedo del mundo</strong></p>", unsafe_allow_html=True)
+            st.image(img1, caption="España cuenta con 930.080 hectáreas de viñedo en 2022 (aprox. el 13% del total mundial)")
+            
+
+        with col2:
+            st.markdown("<p style='text-align: center;'><strong>Somos el tercer productor mundial</strong></p>", unsafe_allow_html=True)
+            st.image(img2, caption="Nuestra producción media anual de vino es de 36.4 millones de hectólitros en 2022")
+            
+        with col3:
+            st.markdown("<p style='text-align: center;'><strong>Aportamos valor a la economía</strong></p>", unsafe_allow_html=True)
+            st.image(img3, caption="La actividad de la cadena de valor vitivinícola supone 20.330 millones de euros de valor añadido, el 1.9% del PIB español")
+            
+
+        with col4:
+            st.markdown("<p style='text-align: center;'><strong>Gran vocación internacional</strong></p>", unsafe_allow_html=True)
+            st.image(img4, caption="En España hay 4.347 bodegas exportadoras de vino (2022). Nuestros vinos se venden en 189 países.")
+        
+        # aca empieza segunda fila de imagenes:5,6,7 y 8
+        col5, col6, col7, col8 = st.columns(4)
+
+        with col5:
+            st.markdown("<p style='text-align: center;'><strong>Somos el primer exportador mundial en volumen</strong></p>", unsafe_allow_html=True)
+            st.image(img5, caption="Somos el primer exportador mundial en volumen, con algo más de 2.153 millones de toneladas en 2022")
+            
+        with col6:
+            st.markdown("<p style='text-align: center;'><strong>Terceros mayores exportadores en valor</strong></p>", unsafe_allow_html=True)
+            st.image(img6, caption="Y los terceros mayores exportadores del mundo en valor, con 2.914 millones de euros exportados en 2021")
+            
+        with col7: 
+            st.markdown("<p style='text-align: center;'><strong>25% de la producción de vino en Europa</strong></p>", unsafe_allow_html=True)
+            st.image(img7, caption="3 de cada 5 botellas comercializadas en el mundo proceden de la UE. En España somos responsables del 25% de la producción de vino en Europa")
+            
+        with col8:
+            st.markdown("<p style='text-align: center;'><strong>Generamos empleo</strong></p>", unsafe_allow_html=True)
+            st.image(img8, caption="El sector del vino genera y mantiene 363.980 empleos (2% del total en España)")
+            
+        st.markdown("Fuente: https://www.fev.es/sector-cifras/")
+            
+        
+    # END PAGE 1
+    
+    #PAGE 2----------------------------------
+    
+if selected == "Objetivo del estudio y información del dataset":
  
     st.markdown("""
 <div class="container">
-    <h1 class='centered-title-pg1' style='color: white ;'>Los mejores vinos de España</h1>
-    <p class='centered-text-pg1' >Se ha realizado una valoración de los vinos de España en relación a su cuerpo, acidez y precio<br>
-    El objetivo final de este estudio, es recomendar a nuestro importador de vinos, mediante el uso de algoritmos de clasificación cuál es el vinos que más le interesa adquirir.</p>
+    <h1 class='centered-title-pg1' style='color: white ; font-size: 75px;'>Los mejores vinos de España</h1>
+    <p class='centered-text-pg1' style='font-size: 30px;'>Se ha realizado una valoración de los vinos de España en relación a su cuerpo, acidez y precio<br>
+    El objetivo final de este estudio, es recomendar a nuestro importador de vinos, mediante el uso de algoritmos de clasificación cuáles son los vinos que más le podría interesa adquirir.</p>
 </div>
 """, unsafe_allow_html=True)
-    #st.image(r'd:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\wordcloud_reviews.png', use_column_width=True)
 
 #gif vino
     st.image('https://i.makeagif.com/media/8-14-2020/3DKUjE.gif', use_column_width=False, width=1400)
     
     st.markdown("<p class='images-text'>imagenes: https://i.makeagif.com/media/8-14-2020/3DKUjE.gif</p>", unsafe_allow_html=True)
 
-## END PAGE 1
-
-#####################################################################################################
-if selected == "Descripción de la base de datos":
-
 #analisis descriptivo del dataset
     st.markdown("""
 <div class="container">
     <h1 class='centered-title-pg1'>Descripción de la base de datos</h1>
     <p class='centered-text-pg1'>Hemos obtenido esta base de datos de la página <a href="https://www.kaggle.com/datasets/fedesoriano/spanish-wine-quality-dataset">kaggle</a>, consta de 7.500 valores donde podemos ver en que bodega se hicieron, el año, el cuerpo del vino, su nivel de acidez, su valoración, de qué tipo de vino se trata, el nombre y el número de reviews. <br>
-    <p>
-    <p class='centered-text-pg1'>Distribución de Air BnB anunciados por barrio</p>
+    <p class='centered-text-pg1'>Representación gráfica de los valores nulos del data set</p>
 </div>
 """, unsafe_allow_html=True)
 
+#Imagen valores nulos
+    st.title("Valores nulos")
+    st.image("valores_nulos.png", use_column_width=False, width=1100)
+    st.subheader("En la imagen anterior se puede observar que hay valores nulos en el dataset, vemos como se concentran en las columnas acidity y body, y tambien existen algunos dentro de la columna type, como consideramos que no se pueden sustituir los valores sin tener mas información, eliminamos los valores nulos. Posteriormente hicimos un análisis descriptivo con el objetivo de visualizar bien nuestra base de datos.")
+    st.image("distribucionPrecios.png", use_column_width=False, width=1100)
+    st.image("distribuciónRating.png", use_column_width=False, width=1100)
+    st.image("BoxplotPrecios.png", use_column_width=False, width=1100)
+    st.image("RelaciónPrecioRating.png", use_column_width=False, width=1100)
+
+###  END PAGE 2
+    
+    
+
+
 # fuente cita: fedesoriano. (April 2022). Spanish Wine Quality Dataset. Retrieved [Date Retrieved] from https://www.kaggle.com/datasets/fedesoriano/spanish-wine-quality-dataset
+## END PAGE 2
 
-# Read the HTML content
-    with open(html_file_path, "r", encoding='utf-8') as file:
-        html_data = file.read()
+#####################################################################################################
+# PAGE 3----------------------------------
 
-# Display the HTML map in Streamlit
-    components.html(html_data, width=950, height=450)
+# Interfaz para la página "Modelo"
+if selected == "Modelo":
+    
+    #AGREGAR TITULO, DESCRIPCION DEL MODELO
+    st.markdown("""
+<div class="container">
+    <h1 class='centered-title-pg1'>Modelo random forest de clasificación.</h1>
+    <h1 class='centered-text-pg1'>Hemos creado un modelo para que cada cliente pueda buscar una bodega, en función del vino que le apetezca probar, es decir cada cliente añadiendo en el modelo que se muestra a continuación, los datos del vino que quiere probar, puede encontrar la bodega en la que adquiri</h1>
+. Además, seguido del modelo puede buscar la bodega recomendada para ver todos los datos que tenemos sobre ella.</div>    
+""", unsafe_allow_html=True)
+    
+    # Convertir variables categóricas a numéricas
+    #grafico peso modelo
+    st.image("pesodelmodelo.png", use_column_width=False, width=1100)
+    
+    label_encoders = {}
+    for column in ['wine', 'country', 'region', 'type']:
+        le = LabelEncoder()
+        df[column] = le.fit_transform(df[column])
+        label_encoders[column] = le
+
+    # Definir características y objetivo
+    X = df.drop(columns='winery')
+    y = df['winery']
+
+    # Dividir datos en conjuntos de entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Crear y entrenar el modelo de Random Forest
+    rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+    rf_model.fit(X_train, y_train)
+
+    # Evaluar el modelo
+    y_pred = rf_model.predict(X_test)
+    # st.write("Accuracy:", accuracy_score(y_test, y_pred))
+    # st.write("Classification Report:\n", classification_report(y_test, y_pred))
+
+    # Función para ingresar datos manualmente y realizar predicción
+    def predict_winery(wine, year, rating, num_reviews, country, region, price, wine_type, body, acidity):
+        # Convertir las características ingresadas a números usando los label encoders
+        wine = label_encoders['wine'].transform([wine])[0]
+        country = label_encoders['country'].transform([country])[0]
+        region = label_encoders['region'].transform([region])[0]
+        wine_type = label_encoders['type'].transform([wine_type])[0]
         
-    st.write('')
-    #st.image(r'd:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\room_type_frequency.png', use_column_width=True)
-    st.markdown("<p class='sub-figure'>Podemos ver como el tipo de habitación mas repetida es casa entera o apartamento, seguido por habitación privada, por último vemos que los que menos se ofertan son habitaciones compartidas y habitaciones de hotel.</p>", unsafe_allow_html=True)
+        # Preparar los datos para la predicción
+        new_data = pd.DataFrame({
+            'wine': [wine],
+            'year': [year],
+            'rating': [rating],
+            'num_reviews': [num_reviews],
+            'country': [country],
+            'region': [region],
+            'price': [price],
+            'type': [wine_type],
+            'body': [body],
+            'acidity': [acidity]
+        })
 
-    #st.image(r'd:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\accommodates_distribution.png', use_column_width=True)
-    st.markdown("<p class='sub-figure'> Se observa que si el número es par siempre es mayor que el impar anterior, favorenciendo asi las ofertas para grupos pares.</p>", unsafe_allow_html=True)
+        # Realizar la predicción
+        prediction = rf_model.predict(new_data)
+        return prediction[0]
 
+    # Interfaz de Streamlit para ingresar valores manualmente
+    st.write("Por favor ingrese los valores del vino para predecir la bodega:")
 
-    st.write('Por último, consideramos importante ver que barrios tienen el mayor número de anuncios y que barrio tine menos.')
-    #st.image(r'd:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\listings_by_neighbourhood.png', use_column_width=True)
-    st.markdown("<p class='sub-figure'> El barrio de Eixample es el barrio con mas ofertas, y Nou Barris los que menos.</p>", unsafe_allow_html=True)
+    wine = st.text_input("Nombre del Vino (e.g., Tinto)")
+    year = st.number_input("Año del Vino (e.g., 2013)",min_value=1900, max_value=2024, value=None)
+    rating = st.number_input("Rating del Vino (e.g., 4.9)")
+    num_reviews = st.number_input("Número de Reviews (e.g., 58)")
+    country = st.text_input("País del Vino (e.g., Espana)")
+    region = st.text_input("Región del Vino (e.g., Toro)")
+    price = st.number_input("Precio del Vino (e.g., 995.0)")
+    wine_type = st.text_input("Tipo de Vino (e.g., Toro Red)")
+    body = st.number_input("Cuerpo del Vino (e.g., 5.0)")
+    acidity = st.number_input("Acidez del Vino (e.g., 3.0)")
 
+# Realizar la predicción
+    if st.button("Predecir Bodega"):
+        prediction = predict_winery(wine, year, rating, num_reviews, country, region, price, wine_type, body, acidity)
+
+        st.write(f"La predicción de la bodega es: {prediction}")
+        
+#filtrar por bodegas para ver su información
+    st.title("Selecciona una bodega para ver su información")
+    winery_options = st.selectbox("Bodegas disponibles", df['winery'].unique())
+    winery_df = df[df['winery'] == winery_options]
+    num_wines = len(winery_df)
+    avg_rating = winery_df['rating'].mean().round(2 )
+    avg_price = winery_df['price'].mean().round(2)
+    avg_reviews = winery_df['num_reviews'].mean().round(2)
+
+    st.subheader("Información de la Bodega Seleccionada")
+    st.write(f"Bodega: {winery_options}")
+    st.write(f"Total de vinos a la venta: {num_wines}")
+    st.write(f"Promedio Rating vinos: {avg_rating}")
+    st.write(f"Promedio Price vinos: {avg_price}")
+    st.write(f"Promedio Reviews vinos: {avg_reviews}")
 
 ##########################################################################
-if selected == "Evolución de precios":
-    st.markdown("""
-    <div class="container">
-        <h1 class='centered-title-pg1'>Evolución de los precios</h1>
-    </div>    
-    """, unsafe_allow_html=True)    
 
-    st.markdown(' Tras el estudio de los precios del panel anterior, se decidió que lo mejor sería un estudio de la evolución del precio a lo largo del tiempo , para ello se realizaron tre graficos viendo la evolucion del precio, y para evitar sesgos se les aplico una funcion:')
-    #st.image(r'd:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\serie_temporal_precio_con_suavizante.png', use_column_width=True)
-    st.markdown("<p class='sub-figure'> En este gráfico vemos la evolución del precio medio, se observa una caida a lo largo de los últimos meses del año y de los primeros, aproximadente la caida empieza en octubre. </p>", unsafe_allow_html=True)
-
-
-    #st.image(r'd:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\Precio_NMt_y_Suavizante.png', use_column_width=True)
-    st.markdown('### Ahora si, vemos como la caída, aunque existe es mucho menor en estos meses como se muestra en el informe de power BI. Por último mostraremos mapas con la evolucion de los precios en todo barcelona aplicando tres filtros distinto:', unsafe_allow_html=True)
-
-    st.header("")
-    html_file_path = r"d:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\imagenes\mapa_heatmap_precio_ocupante.html"
-# Read the HTML content
-    with open(html_file_path, "r", encoding='utf-8') as file:
-        html_data = file.read()
-    st.markdown(" Precio por ocupante en Barcelona", unsafe_allow_html=True)
-
-
-# Display the HTML map in Streamlit
-    components.html(html_data, width=950, height=450)
-
-
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        st.header("")
-        #st.video(r"Modulo 2\APP barcelona\animacion_Mapa_ppam.mp4", format="video/mp4")
-        st.markdown(" Precio por ocupante en Barcelona", unsafe_allow_html=True)
-    with col2:
-        st.header("Evolución de precios")
-        #st.video(r"Modulo 2\APP barcelona\animacion_Mapa_pNm.mp4", format="video/mp4")
-        st.markdown(" Precio por ocupante normalizado en Barcelona", unsafe_allow_html=True)
-    with col3:
-        st.header("")
-        #st.video(r"Modulo 2\APP barcelona\animacion_Mapa_pNMtm.mp4", format="video/mp4")
-        st.markdown("Precio por ocupante normalizado por la mediana en Barcelona ", unsafe_allow_html=True)
-
-
-#############################
-    # Ruta al archivo de video
-    #video_path = "animacion_Mapa_ppam.mp4"
-
-    # Mostrar el video en Streamlit
-    #st.video(r"Modulo 2\APP barcelona\animacion_Mapa_ppam.mp4", format="video/mp4")
-
-   # html_path = r"Modulo 2\APP barcelona\video.html"
-
-    #with open(html_path, 'r', encoding='utf-8') as file:
-     #   html_content = file.read()
-
-    #st.components.v1.html(html_content, width=800, height=600)
-
-    # Ruta al archivo de video
-#    video_path = r"d:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\animacion_Mapa_pNm.mp4"
-
-    # Mostrar el video en Streamlit
-#    st.video(video_path)
-
-
-    # Ruta al archivo de video
-#    video_path = r"d:\Users\Usuario\Desktop\Bootcamp\mi_entorno\Modulo 2\Proyecto 2\animacion_Mapa_pNMtm.mp4"
-
-    # Mostrar el video en Streamlit
-#    st.video(video_path)
-
-# Display the HTML map in Streamlit
-    #components.html(html_data, width=950, height=450)
 ###############################################
 
 
 # PAGE 3----------------------------------
-if selected == "Panel informativo":
+if selected == "Panel informativo de los vinos":
     st.markdown("""
     <div class="container">
-        <h1 class='centered-title-pg1'>Panel informativo detallando los alquileres.</h1>
+        <h1 class='centered-title-pg1'>Análisis de interés en función del vino, precio y valoración del mismo.</h1>
         <h1 class='centered-text-pg1'></h1>
     </div>    
     """, unsafe_allow_html=True)
@@ -177,6 +279,7 @@ if selected == "Panel informativo":
     st.markdown(f"""
             <iframe width="100%" height="600" src="{powerbi_url}" frameborder="0" allowFullScreen="true"></iframe>
         """, unsafe_allow_html=True)
+
 
 #
 # Adicionar CSS al app Streamlit
@@ -204,8 +307,8 @@ css = """
         margin-bottom: 40px;
     }
     .images-text {
-        font-size: 9px;
-        color: grey;  
+        font-size: px;
+        color: white;  
         margin-top: 00px;
     }
     .subtitles {
