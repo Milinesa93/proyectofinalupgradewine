@@ -40,7 +40,7 @@ css = """
     
     }
     .caption {
-    color: white;
+    color: #fff !important;;
     text-align: center;
     font-size: 14px;
     }
@@ -245,8 +245,9 @@ if selected == "Objetivo del estudio y información del dataset":
 #Imagen valores nulos y otros graficos
     st.title("Valores nulos")
     st.image("valores_nulos.png", use_column_width=False, width=1100)
-
-    st.subheader("En la imagen anterior se puede observar que hay valores nulos en el dataset, vemos como se concentran en las columnas acidity y body, y tambien existen algunos dentro de la columna type, como consideramos que no se pueden sustituir los valores sin tener mas información, eliminamos los valores nulos. Posteriormente hicimos un análisis descriptivo con el objetivo de visualizar bien nuestra base de datos.")
+    st.markdown('<h2 style="color: white;">En la imagen anterior se puede observar que hay valores nulos en el dataset, vemos como se concentran en las columnas acidity y body, y tambien existen algunos dentro de la columna type, como consideramos que no se pueden sustituir los valores sin tener mas información, eliminamos los valores nulos. Posteriormente hicimos un análisis descriptivo con el objetivo de visualizar bien nuestra base de datos.</h2>', 
+    unsafe_allow_html=True)
+    #st.subheader("En la imagen anterior se puede observar que hay valores nulos en el dataset, vemos como se concentran en las columnas acidity y body, y tambien existen algunos dentro de la columna type, como consideramos que no se pueden sustituir los valores sin tener mas información, eliminamos los valores nulos. Posteriormente hicimos un análisis descriptivo con el objetivo de visualizar bien nuestra base de datos.")
     st.image("distribucionPrecios.png", use_column_width=False, width=1100)
     st.image("distribuciónRating.png", use_column_width=False, width=1100)
     st.image("BoxplotPrecios.png", use_column_width=False, width=1100)
