@@ -222,7 +222,7 @@ if selected == "Objetivo del estudio y información del dataset":
     st.markdown("""
 <div class="container">
     <h1 class='centered-title-pg1' style='color: white ; font-size: 75px;'>Los mejores vinos de España</h1>
-    p> style='font-size: 30px;'>Se ha realizado una valoración de los vinos de España en relación a su cuerpo, acidez y precio<br>
+    <p style='font-size: 30px;'>Se ha realizado una valoración de los vinos de España en relación a su cuerpo, acidez y precio<br>
     El objetivo final de este estudio, es recomendar a nuestro importador de vinos, mediante el uso de algoritmos de clasificación cuáles son los vinos que más le podría interesa adquirir.</p>
 </div>
 """, unsafe_allow_html=True)
