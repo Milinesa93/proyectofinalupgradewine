@@ -38,6 +38,12 @@ css = """
         background-color: #380487 !important; 
     }
     
+    }
+    .caption {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    }
         .centered-text {     
         text-align: center;
         color: white !important;
@@ -170,8 +176,7 @@ if selected == "España: El país con más viñedos del mundo":
 
         with col1:
             st.markdown("<p style='text-align: center; color: white;'><strong>Somos el primer viñedo del mundo</strong></p>", unsafe_allow_html=True)
-            #st.image(img1, caption="España cuenta con 930.080 hectáreas de viñedo en 2022 (aprox. el 13% del total mundial)")
-            st.markdown(f"<div style='text-align: center;'><img src='{img1}' alt='Image' width='100%'><p style='color: white;'>España cuenta con 930.080 hectáreas de viñedo en 2022 (aprox. el 13% del total mundial)</p></div>", unsafe_allow_html=True)
+            st.image(img1, caption="España cuenta con 930.080 hectáreas de viñedo en 2022 (aprox. el 13% del total mundial)")
         
 
         with col2:
