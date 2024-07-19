@@ -28,7 +28,7 @@ st.set_page_config(
     page_title="Selección de vinos",
     page_icon=":wine_glass:",#intentar icono#
     layout="wide")
-st.markdown(css, unsafe_allow_html=True)
+
 
 
 # ---------------------SITE CONFIG----------------------#
@@ -372,3 +372,5 @@ css = """
     
 </style>
 """
+
+st.markdown(css, unsafe_allow_html=True)
