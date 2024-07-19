@@ -169,16 +169,16 @@ if selected == "España: El país con más viñedos del mundo":
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            st.markdown("<p style='text-align: center;'><strong>Somos el primer viñedo del mundo</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center' style='color: white;'><strong>Somos el primer viñedo del mundo</strong></p>", unsafe_allow_html=True)
             st.image(img1, caption="España cuenta con 930.080 hectáreas de viñedo en 2022 (aprox. el 13% del total mundial)")
             
 
         with col2:
-            st.markdown("<p style='text-align: center;'><strong>Somos el tercer productor mundial</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center;'style='color: white;'><strong>Somos el tercer productor mundial</strong></p>", unsafe_allow_html=True)
             st.image(img2, caption="Nuestra producción media anual de vino es de 36.4 millones de hectólitros en 2022")
             
         with col3:
-            st.markdown("<p style='text-align: center;'><strong>Aportamos valor a la economía</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center;' style='color: white;'><strong>Aportamos valor a la economía</strong></p>", unsafe_allow_html=True)
             st.image(img3, caption="La actividad de la cadena de valor vitivinícola supone 20.330 millones de euros de valor añadido, el 1.9% del PIB español")
             
 
