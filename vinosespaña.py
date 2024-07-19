@@ -169,7 +169,7 @@ if selected == "España: El país con más viñedos del mundo":
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            st.markdown("<p style='text-align: center' style='color: white;'><strong>Somos el primer viñedo del mundo</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; color: white;'><strong>Somos el primer viñedo del mundo</strong></p>", unsafe_allow_html=True)
             st.image(img1, caption="España cuenta con 930.080 hectáreas de viñedo en 2022 (aprox. el 13% del total mundial)")
             
 
