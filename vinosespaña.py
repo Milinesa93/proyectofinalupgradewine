@@ -37,7 +37,7 @@ css = """
     
         .centered-text {     
         text-align: center;
-        color: black;
+        color: white;
         font-size: 40px;
         margin-bottom: 40px; 
     }
@@ -47,7 +47,7 @@ css = """
     }
     .images-text {
         font-size: px;
-        color: ;  
+        color: white;  
         margin-top: 00px;
     }
     .subtitles {
