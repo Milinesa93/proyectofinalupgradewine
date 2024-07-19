@@ -174,35 +174,35 @@ if selected == "España: El país con más viñedos del mundo":
             
 
         with col2:
-            st.markdown("<p style='text-align: center;'style='color: white;'><strong>Somos el tercer productor mundial</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; color: white;'><strong>Somos el tercer productor mundial</strong></p>", unsafe_allow_html=True)
             st.image(img2, caption="Nuestra producción media anual de vino es de 36.4 millones de hectólitros en 2022")
             
         with col3:
-            st.markdown("<p style='text-align: center;' style='color: white;'><strong>Aportamos valor a la economía</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center;color: white;'><strong>Aportamos valor a la economía</strong></p>", unsafe_allow_html=True)
             st.image(img3, caption="La actividad de la cadena de valor vitivinícola supone 20.330 millones de euros de valor añadido, el 1.9% del PIB español")
             
 
         with col4:
-            st.markdown("<p style='text-align: center;'><strong>Gran vocación internacional</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; color:white;'><strong>Gran vocación internacional</strong></p>", unsafe_allow_html=True)
             st.image(img4, caption="En España hay 4.347 bodegas exportadoras de vino (2022). Nuestros vinos se venden en 189 países.")
         
         # aca empieza segunda fila de imagenes:5,6,7 y 8
         col5, col6, col7, col8 = st.columns(4)
 
         with col5:
-            st.markdown("<p style='text-align: center;'><strong>Somos el primer exportador mundial en volumen</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center;color:white;'><strong>Somos el primer exportador mundial en volumen</strong></p>", unsafe_allow_html=True)
             st.image(img5, caption="Somos el primer exportador mundial en volumen, con algo más de 2.153 millones de toneladas en 2022")
             
         with col6:
-            st.markdown("<p style='text-align: center;'><strong>Terceros mayores exportadores en valor</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center;color:white;'><strong>Terceros mayores exportadores en valor</strong></p>", unsafe_allow_html=True)
             st.image(img6, caption="Y los terceros mayores exportadores del mundo en valor, con 2.914 millones de euros exportados en 2021")
             
         with col7: 
-            st.markdown("<p style='text-align: center;'><strong>25% de la producción de vino en Europa</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center;color:white;'><strong>25% de la producción de vino en Europa</strong></p>", unsafe_allow_html=True)
             st.image(img7, caption="3 de cada 5 botellas comercializadas en el mundo proceden de la UE. En España somos responsables del 25% de la producción de vino en Europa")
             
         with col8:
-            st.markdown("<p style='text-align: center;'><strong>Generamos empleo</strong></p>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center;color:white;'><strong>Generamos empleo</strong></p>", unsafe_allow_html=True)
             st.image(img8, caption="El sector del vino genera y mantiene 363.980 empleos (2% del total en España)")
             
         st.markdown("Fuente: https://www.fev.es/sector-cifras/")
