@@ -25,6 +25,9 @@ df = pd.read_csv("dfclean.csv")
 
 css = """
 <style>
+    h1 {
+        color: white;
+    }
     [data-testid="stSidebar"] {
         background-image: url(https://estaticos-cdn.prensaiberica.es/clip/6b3786a9-f191-4d49-ad0f-0f2d863119eb_alta-aspect-ratio_default_0.webp);
         background-size: cover;
