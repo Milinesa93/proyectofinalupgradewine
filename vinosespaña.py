@@ -222,7 +222,7 @@ if selected == "Objetivo del estudio y información del dataset":
     st.markdown("""
 <div class="container">
     <h1 class='centered-title-pg1' style='color: white ; font-size: 75px;'>Los mejores vinos de España</h1>
-    <p> style='font-size: 30px;'Se ha realizado una valoración de los vinos de España en relación a su cuerpo, acidez y precio<br>
+    p> style='font-size: 30px;'>Se ha realizado una valoración de los vinos de España en relación a su cuerpo, acidez y precio<br>
     El objetivo final de este estudio, es recomendar a nuestro importador de vinos, mediante el uso de algoritmos de clasificación cuáles son los vinos que más le podría interesa adquirir.</p>
 </div>
 """, unsafe_allow_html=True)
@@ -246,7 +246,7 @@ if selected == "Objetivo del estudio y información del dataset":
     st.image("valores_nulos.png", use_column_width=False, width=1100)
     #st.markdown('<h2 style="color: white;">En la imagen anterior se puede observar que hay valores nulos en el dataset, vemos como se concentran en las columnas acidity y body, y tambien existen algunos dentro de la columna type, como consideramos que no se pueden sustituir los valores sin tener mas información, eliminamos los valores nulos. Posteriormente hicimos un análisis descriptivo con el objetivo de visualizar bien nuestra base de datos.</h2>', 
     #unsafe_allow_html=True)
-    st.markdown("""<div class="container"><p> style='font-size: 30px;'>En la imagen anterior se puede observar que hay valores nulos en el dataset, vemos como se concentran en las columnas acidity y body, y tambien existen algunos dentro de la columna type, como consideramos que no se pueden sustituir los valores sin tener mas información, eliminamos los valores nulos. Posteriormente hicimos un análisis descriptivo con el objetivo de visualizar bien nuestra base de datos.</p>
+    st.markdown("""<div class="container"><p style='font-size: 30px;'>En la imagen anterior se puede observar que hay valores nulos en el dataset, vemos como se concentran en las columnas acidity y body, y tambien existen algunos dentro de la columna type, como consideramos que no se pueden sustituir los valores sin tener mas información, eliminamos los valores nulos. Posteriormente hicimos un análisis descriptivo con el objetivo de visualizar bien nuestra base de datos.</p>
     </div>
 """, unsafe_allow_html=True)
     st.image("distribucionPrecios.png", use_column_width=False, width=1100)
