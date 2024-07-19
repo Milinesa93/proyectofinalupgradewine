@@ -212,6 +212,7 @@ if selected == "España: El país con más viñedos del mundo":
             
         st.markdown("Fuente: https://www.fev.es/sector-cifras/")
             
+        #fuente de consulta https://docs.streamlit.io/develop/api-reference/layout/st.columns
         
     # END PAGE 1
     
@@ -267,7 +268,7 @@ if selected == "Modelo":
     st.markdown("""
 <div class="container">
     <h1 class='centered-title-pg1'>Modelo random forest de clasificación.</h1>
-    <h1 class='centered-text-pg1'>Hemos creado un modelo para que cada cliente pueda buscar una bodega, en función del vino que le apetezca probar, es decir cada cliente añadiendo en el modelo que se muestra a continuación, los datos del vino que quiere probar, puede encontrar la bodega en la que adquirirlo. Además, seguido del modelo puede buscar la bodega recomendada para ver todos los datos que tenemos sobre ella.</h1></div>    
+    <h1>Hemos creado un modelo para que cada cliente pueda buscar una bodega, en función del vino que le apetezca probar. Añadiendo los datos del vino en el modelo que se muestra a continuación, encontrará la bodega en la que adquirirlo. Además, seguido del modelo puede buscar la bodega recomendada para ver todos los datos que tenemos sobre ella.</h1></div>    
 """, unsafe_allow_html=True)
     
     #grafico peso modelo
