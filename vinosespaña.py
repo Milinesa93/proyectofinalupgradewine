@@ -23,12 +23,107 @@ import seaborn as sns
 
 df = pd.read_csv("dfclean.csv")
 
+css = """
+<style>
+    h1 {
+        color: white;
+    }
+    [data-testid="stSidebar"] {
+        background-image: url(https://estaticos-cdn.prensaiberica.es/clip/6b3786a9-f191-4d49-ad0f-0f2d863119eb_alta-aspect-ratio_default_0.webp);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .block-container {
+        background-color: #380487 !important; 
+    }
+    
+        .centered-text {     
+        text-align: center;
+        color: white !important;
+        font-size: 40px;
+        margin-bottom: 40px; 
+    }
+    .justified-text {
+        text-align: justify;
+        margin-bottom: 40px;
+    }
+    .images-text {
+        font-size: px;
+        color: white !important;  
+        margin-top: 00px;
+    }
+    .subtitles {
+        font-size: 25px;
+        color: white !important;  
+        margin-top: 10px;
+    }
+        .centered-title-pg1 {
+        
+        font-size: 2em;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: white !important;
+        width: 90%; 
+    }
+    .justified-text-pg1 {
+        text-align: justify;
+        font-size: 1.2em;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        color: white !important; 
+        width: 90%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .centered-text-pg1 {
+        text-align: center;
+        font-size: 1.2em;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        font-family: 'Lato', sans-serif;
+        color: white !important; 
+        width: 90%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .centered-text-pg5 {
+        text-align: center;
+        font-size: 1.2em;
+        line-height: 1.5;
+        font-family: sans-serif;
+        margin-bottom: 5px;
+        color: white !important; 
+        width: 90%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
 
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+    .sub-figure {
+        text-align: left;
+        color: white !important;
+        font-size: 13px;
+        margin-bottom: 45px; 
+    }
+    .sub-figure2 {
+        text-align: left;
+        color: white !important;
+        font-size: 13px;
+        margin-bottom: 10px; 
+        
+    }
+    
+</style>
+"""
 st.set_page_config(
     page_title="Selección de vinos",
     page_icon=":wine_glass:",#intentar icono#
     layout="wide")
-
+st.markdown(css, unsafe_allow_html=True)
 
 
 # ---------------------SITE CONFIG----------------------#
@@ -144,6 +239,7 @@ if selected == "Objetivo del estudio y información del dataset":
 #Imagen valores nulos y otros graficos
     st.title("Valores nulos")
     st.image("valores_nulos.png", use_column_width=False, width=1100)
+
     st.subheader("En la imagen anterior se puede observar que hay valores nulos en el dataset, vemos como se concentran en las columnas acidity y body, y tambien existen algunos dentro de la columna type, como consideramos que no se pueden sustituir los valores sin tener mas información, eliminamos los valores nulos. Posteriormente hicimos un análisis descriptivo con el objetivo de visualizar bien nuestra base de datos.",color = "white")
     st.image("distribucionPrecios.png", use_column_width=False, width=1100)
     st.image("distribuciónRating.png", use_column_width=False, width=1100)
@@ -276,101 +372,3 @@ if selected == "Panel informativo de los vinos":
 
 
 
-css = """
-<style>
-    h1 {
-        color: white;
-    }
-    [data-testid="stSidebar"] {
-        background-image: url(https://estaticos-cdn.prensaiberica.es/clip/6b3786a9-f191-4d49-ad0f-0f2d863119eb_alta-aspect-ratio_default_0.webp);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    .block-container {
-        background-color: #380487 !important; 
-    }
-    
-        .centered-text {     
-        text-align: center;
-        color: white;
-        font-size: 40px;
-        margin-bottom: 40px; 
-    }
-    .justified-text {
-        text-align: justify;
-        margin-bottom: 40px;
-    }
-    .images-text {
-        font-size: px;
-        color: white;  
-        margin-top: 00px;
-    }
-    .subtitles {
-        font-size: 25px;
-        color: white;  
-        margin-top: 10px;
-    }
-        .centered-title-pg1 {
-        
-        font-size: 2em;
-        font-weight: bold;
-        margin-bottom: 20px;
-        color: white !important;
-        width: 90%; 
-    }
-    .justified-text-pg1 {
-        text-align: justify;
-        font-size: 1.2em;
-        line-height: 1.5;
-        margin-bottom: 15px;
-        color: white; 
-        width: 90%; 
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .centered-text-pg1 {
-        text-align: center;
-        font-size: 1.2em;
-        line-height: 1.5;
-        margin-bottom: 15px;
-        font-family: 'Lato', sans-serif;
-        color: white; 
-        width: 90%; 
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .centered-text-pg5 {
-        text-align: center;
-        font-size: 1.2em;
-        line-height: 1.5;
-        font-family: sans-serif;
-        margin-bottom: 5px;
-        color: white; 
-        width: 90%; 
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .container {
-        width: 100%;
-        margin: 0 auto;
-    }
-    .sub-figure {
-        text-align: left;
-        color: white;
-        font-size: 13px;
-        margin-bottom: 45px; 
-    }
-    .sub-figure2 {
-        text-align: left;
-        color: white;
-        font-size: 13px;
-        margin-bottom: 10px; 
-        
-    }
-    
-</style>
-"""
-
-st.markdown(css, unsafe_allow_html=True)
