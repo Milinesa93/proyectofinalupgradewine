@@ -231,8 +231,8 @@ if selected == "Objetivo del estudio y información del dataset":
     st.markdown("""
 <div class="container">
     <h1 class='centered-title-pg1'>Descripción de la base de datos</h1>
-    <p class='centered-text-pg1'>Hemos obtenido esta base de datos de la página <a href="https://www.kaggle.com/datasets/fedesoriano/spanish-wine-quality-dataset">kaggle</a>, consta de 7.500 valores donde podemos ver en que bodega se hicieron, el año, el cuerpo del vino, su nivel de acidez, su valoración, de qué tipo de vino se trata, el nombre y el número de reviews. <br>
-    <p class='centered-text-pg1'>Representación gráfica de los valores nulos del data set</p>
+    <p class='justified-text-pg1'>Hemos obtenido esta base de datos de la página <a href="https://www.kaggle.com/datasets/fedesoriano/spanish-wine-quality-dataset">kaggle</a>, consta de 7.500 valores donde podemos ver en que bodega se hicieron, el año, el cuerpo del vino, su nivel de acidez, su valoración, de qué tipo de vino se trata, el nombre y el número de reviews. <br>
+    <p class='justified-text-pg1'>Representación gráfica de los valores nulos del data set</p>
 </div>
 """, unsafe_allow_html=True)
 
